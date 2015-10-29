@@ -223,7 +223,7 @@ public class ListaClienteActivity extends AppCompatActivity implements SearchVie
 
     @Override
     public void onClickListener(View v, int position) {
-        //click
+
     }
 
     @Override
