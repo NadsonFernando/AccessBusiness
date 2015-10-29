@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">AccessBusiness</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_cliente">Clientes</string>
+    <string name="title_activity_main">Vendas</string>
+    <string name="drawer_open">Abrir navigation</string>
+    <string name="drawer_close">Fechar</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="usuario">Jéssica Oliveira</string>
+    <string name="cargo">Administradora</string>
+    <string name="confirmar">Confirmar</string>
+    <string name="new_client">Novo Cliente</string>
+</resources>

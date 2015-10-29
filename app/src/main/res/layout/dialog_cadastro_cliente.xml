@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_nome"
+            android:padding="20dp"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/txtNome"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:hint="Nome"
+            android:layout_marginLeft="15dp"/>
+        
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_telefone"
+            android:padding="20dp"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/txtTelefone"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:inputType="phone"
+            android:ems="@android:integer/config_longAnimTime"
+            android:hint="Telefone"
+            android:maxLength="11"
+            android:layout_marginLeft="15dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_endereco"
+            android:padding="20dp"
+            android:layout_gravity="center"/>
+        <EditText
+            android:id="@+id/txtEndereco"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:hint="Endereço"
+            android:layout_marginLeft="15dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>
