@@ -19,10 +19,10 @@ public class Venda {
     private int pago;
 
     @DatabaseField
-    private int prazo;
+    private Date dataVenda;
 
     @DatabaseField
-    private Date dataVenda;
+    private float valor;
 
     @DatabaseField
     private String descricao;
@@ -32,12 +32,12 @@ public class Venda {
 
     public Venda(){}
 
-    public Venda(Cliente cliente, Date dataVenda, Integer id, int pago, int prazo) {
-        this.cliente = cliente;
-        this.dataVenda = dataVenda;
-        this.id = id;
+    public Venda(int pago, Date dataVenda, float valor, String descricao, Cliente cliente) {
         this.pago = pago;
-        this.prazo = prazo;
+        this.dataVenda = dataVenda;
+        this.valor = valor;
+        this.descricao = descricao;
+        this.cliente = cliente;
     }
 
     public Cliente getCliente() {
@@ -46,6 +46,14 @@ public class Venda {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public float getValor() {
+        return valor;
+    }
+
+    public void setValor(float valor) {
+        this.valor = valor;
     }
 
     public Date getDataVenda() {
@@ -72,13 +80,6 @@ public class Venda {
         this.pago = pago;
     }
 
-    public int getPrazo() {
-        return prazo;
-    }
-
-    public void setPrazo(int prazo) {
-        this.prazo = prazo;
-    }
 
     public String getDescricao() {
         return descricao;
@@ -94,7 +95,6 @@ public class Venda {
                 "cliente=" + cliente +
                 ", id=" + id +
                 ", pago=" + pago +
-                ", prazo=" + prazo +
                 ", dataVenda=" + dataVenda +
                 '}';
     }

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,31 +22,67 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import nadsonfernando.com.br.accessbusiness.adapter.VendaAdapter;
 import nadsonfernando.com.br.accessbusiness.dao.ClienteDao;
 import nadsonfernando.com.br.accessbusiness.dao.DatabaseHelper;
 import nadsonfernando.com.br.accessbusiness.dao.VendaDao;
 import nadsonfernando.com.br.accessbusiness.model.Cliente;
 import nadsonfernando.com.br.accessbusiness.model.Venda;
+import nadsonfernando.com.br.accessbusiness.util.DividerItemDecoration;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private RecyclerView listaVendas;
+    private VendaAdapter adapterVendas;
+    private RecyclerView.LayoutManager mLayoutManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+        
+        Toolbar toolbar = setUpToobar();
+        setUpDrawer(toolbar);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        setUpViews();
+
+    }
+
+    private void setUpViews() {
+
+        configureListaVenda();
+    }
+
+    private void configureListaVenda() {
+        listaVendas = (RecyclerView) findViewById(R.id.listaVendas);
+        mLayoutManager = new LinearLayoutManager(MainActivity.this);
+        listaVendas.setLayoutManager(mLayoutManager);
+
+        List<Venda> vendas = new ArrayList<Venda>();
+        vendas.add(new Venda(1, new Date(), 15, "Teste Descricao Produto", new Cliente("Nome Sobrenome Terceiro", "111111111", "Rua marista")));
+        adapterVendas = new VendaAdapter(vendas);
+        listaVendas.setAdapter(adapterVendas);
+    }
+
+
+    private void setUpDrawer(Toolbar t) {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, t, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+    }
+
+    private Toolbar setUpToobar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        return toolbar;
     }
 
     @Override
