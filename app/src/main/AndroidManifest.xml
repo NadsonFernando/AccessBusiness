@@ -13,13 +13,16 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".ListaClienteActivity"
             android:label="@string/title_activity_cliente"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CadastroVendaActivity"
+            android:label="@string/title_activity_cadastro_venda"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

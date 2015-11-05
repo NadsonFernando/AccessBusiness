@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -33,6 +34,7 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -223,7 +225,17 @@ public class ListaClienteActivity extends AppCompatActivity implements SearchVie
 
     @Override
     public void onClickListener(View v, int position) {
+        Intent intent = getIntent();
 
+//        intent.putExtra("clienteId", String.valueOf(adapterClientes.getItem(position).getId()));
+//        intent.putExtra("clienteNome", .getNome());
+        Bundle b = new Bundle();
+        b.putSerializable("cliente", adapterClientes.getItem(position));
+
+        intent.putExtras(b);
+
+        setResult(1, intent);
+        finish();
     }
 
     @Override

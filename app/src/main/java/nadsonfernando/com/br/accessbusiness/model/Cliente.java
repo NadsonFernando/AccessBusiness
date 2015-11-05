@@ -3,12 +3,14 @@ package nadsonfernando.com.br.accessbusiness.model;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.io.Serializable;
+
 /**
  * Created by nadsonfernando on 19/10/15.
  */
 
 @DatabaseTable(tableName = "cliente")
-public class Cliente {
+public class Cliente implements Serializable{
 
     @DatabaseField(generatedId = true)
     private Integer id;

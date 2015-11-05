@@ -22,7 +22,7 @@ public class Venda {
     private Date dataVenda;
 
     @DatabaseField
-    private float valor;
+    private Double valor;
 
     @DatabaseField
     private String descricao;
@@ -32,7 +32,7 @@ public class Venda {
 
     public Venda(){}
 
-    public Venda(int pago, Date dataVenda, float valor, String descricao, Cliente cliente) {
+    public Venda(int pago, Date dataVenda, Double valor, String descricao, Cliente cliente) {
         this.pago = pago;
         this.dataVenda = dataVenda;
         this.valor = valor;
@@ -48,11 +48,11 @@ public class Venda {
         this.cliente = cliente;
     }
 
-    public float getValor() {
+    public Double getValor() {
         return valor;
     }
 
-    public void setValor(float valor) {
+    public void setValor(Double valor) {
         this.valor = valor;
     }
 

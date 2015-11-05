@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setUpViews() {
-
         configureListaVenda();
     }
 
@@ -64,7 +63,7 @@ public class MainActivity extends AppCompatActivity
         listaVendas.setLayoutManager(mLayoutManager);
 
         List<Venda> vendas = new ArrayList<Venda>();
-        vendas.add(new Venda(1, new Date(), 15, "Teste Descricao Produto", new Cliente("Nome Sobrenome Terceiro", "111111111", "Rua marista")));
+        vendas.add(new Venda(1, new Date(), 15.0, "Teste Descricao Produto", new Cliente("Nome Sobrenome Terceiro", "111111111", "Rua marista")));
         adapterVendas = new VendaAdapter(vendas);
         listaVendas.setAdapter(adapterVendas);
     }
@@ -81,6 +80,14 @@ public class MainActivity extends AppCompatActivity
     private Toolbar setUpToobar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, CadastroVendaActivity.class));
+            }
+        });
 
         return toolbar;
     }
