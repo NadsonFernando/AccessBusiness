@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,7 @@ import nadsonfernando.com.br.accessbusiness.model.Venda;
  */
 public class VendaAdapter extends RecyclerView.Adapter<VendaAdapter.ViewHolder> {
 
-    private ArrayList<Venda> vendas = new ArrayList<>();
+    private ArrayList<Venda> vendas = new ArrayList<Venda>();
     private Venda item;
 
 
@@ -25,9 +26,7 @@ public class VendaAdapter extends RecyclerView.Adapter<VendaAdapter.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView descricao;
-        TextView cliente;
-        TextView valor;
+        TextView descricao, cliente, valor, diaMes;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -35,6 +34,7 @@ public class VendaAdapter extends RecyclerView.Adapter<VendaAdapter.ViewHolder> 
             descricao = (TextView) itemView.findViewById(R.id.descricao_item_venda);
             cliente = (TextView) itemView.findViewById(R.id.cliente_item_venda);
             valor = (TextView) itemView.findViewById(R.id.valor_item_venda);
+            diaMes = (TextView) itemView.findViewById(R.id.valor_item_diaMes);
         }
 
         @Override
@@ -62,7 +62,12 @@ public class VendaAdapter extends RecyclerView.Adapter<VendaAdapter.ViewHolder> 
 
         holder.descricao.setText(venda.getDescricao().toString());
         holder.cliente.setText(venda.getCliente().getNome().toString());
-        holder.valor.setText(String.valueOf(venda.getValor()));
+        holder.valor.setText(String.valueOf(String.format("%.2f", venda.getValor())));
+
+        SimpleDateFormat simpleDateFormatDia = new SimpleDateFormat("DD");
+        SimpleDateFormat simpleDateFormatMes = new SimpleDateFormat("MMMM");
+
+        holder.diaMes.setText(simpleDateFormatDia.format(venda.getDataVenda()) + " " + simpleDateFormatMes.format(venda.getDataVenda()).substring(0,3).toUpperCase());
     }
 
     public void add(Venda venda) {

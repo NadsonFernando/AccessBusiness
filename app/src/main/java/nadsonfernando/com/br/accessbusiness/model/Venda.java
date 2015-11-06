@@ -22,7 +22,7 @@ public class Venda {
     private Date dataVenda;
 
     @DatabaseField
-    private Double valor;
+    private double valor;
 
     @DatabaseField
     private String descricao;
@@ -32,7 +32,7 @@ public class Venda {
 
     public Venda(){}
 
-    public Venda(int pago, Date dataVenda, Double valor, String descricao, Cliente cliente) {
+    public Venda(int pago, Date dataVenda, double valor, String descricao, Cliente cliente) {
         this.pago = pago;
         this.dataVenda = dataVenda;
         this.valor = valor;
@@ -48,11 +48,11 @@ public class Venda {
         this.cliente = cliente;
     }
 
-    public Double getValor() {
+    public double getValor() {
         return valor;
     }
 
-    public void setValor(Double valor) {
+    public void setValor(double valor) {
         this.valor = valor;
     }
 

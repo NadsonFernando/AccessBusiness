@@ -19,6 +19,7 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.view.GestureDetector;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -70,13 +71,14 @@ public class ListaClienteActivity extends AppCompatActivity implements SearchVie
 
         setUpToolbar();
         setUpViews();
-
     }
 
     private void setUpToolbar() {
         //Toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
     }
 
     private void setUpViews() {
@@ -128,7 +130,8 @@ public class ListaClienteActivity extends AppCompatActivity implements SearchVie
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_search) {
+        if (id == android.R.id.home) {
+            finish();
             return true;
         }
 
@@ -178,11 +181,11 @@ public class ListaClienteActivity extends AppCompatActivity implements SearchVie
                         String telefone = txtTelefone.getText().toString();
                         String endereco = txtEndereco.getText().toString();
 
-                        if (nome.equals("") || nome == null) {
-                            txtNome.setError("Digite o nome");
+                        if (nome.isEmpty()) {
+                            txtNome.setError("Digite um nome");
                             return;
                         }
-                        if (telefone.equals("") || telefone == null) {
+                        if (telefone.isEmpty()) {
                             txtTelefone.setError("Digite um telefone");
                             return;
                         }
@@ -199,11 +202,11 @@ public class ListaClienteActivity extends AppCompatActivity implements SearchVie
 
                                 clienteDao.update(c);
                                 adapterClientes.notifyDataSetChanged();
-                                Snackbar.make(coordinatorLayoutListaClientes, "Cliente atualizado!", Snackbar.LENGTH_LONG).show();
+                                Toast.makeText(ListaClienteActivity.this, "Cliente atualizado!", Toast.LENGTH_SHORT).show();
                             }else {
                                 adapterClientes.add(c);
                                 clienteDao.create(c);
-                                Snackbar.make(coordinatorLayoutListaClientes, "Cliente cadastrado!", Snackbar.LENGTH_LONG).show();
+                                Toast.makeText(ListaClienteActivity.this, "Cliente cadastrado!", Toast.LENGTH_SHORT).show();
                             }
 
                         } catch (SQLException e) {
@@ -223,19 +226,27 @@ public class ListaClienteActivity extends AppCompatActivity implements SearchVie
                 .show();
     }
 
+
+
+    @Override
+    protected void onDestroy() {
+        setResult(0, getIntent());
+        super.onDestroy();
+    }
+
     @Override
     public void onClickListener(View v, int position) {
         Intent intent = getIntent();
 
-//        intent.putExtra("clienteId", String.valueOf(adapterClientes.getItem(position).getId()));
-//        intent.putExtra("clienteNome", .getNome());
-        Bundle b = new Bundle();
-        b.putSerializable("cliente", adapterClientes.getItem(position));
+        if(intent.getBooleanExtra("isForResult", false)) {
+            Bundle b = new Bundle();
+            b.putSerializable("cliente", adapterClientes.getItem(position));
 
-        intent.putExtras(b);
+            intent.putExtras(b);
 
-        setResult(1, intent);
-        finish();
+            setResult(1, intent);
+            finish();
+        }
     }
 
     @Override
